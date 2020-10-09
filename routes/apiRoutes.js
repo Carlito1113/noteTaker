@@ -6,7 +6,10 @@ const store = require("../db/store")
 
 
 module.exports = function (app) {
-app.get('/public', function (req, res) {
+app.get('/public/index.html', function (req, res) {
+    res.json(tableData);
+});
+app.get('/public/notes.html', function (req, res) {
     res.json(tableData);
 });
 }
@@ -15,5 +18,5 @@ app.get('/public', function (req, res) {
 
 
 // GET route
-store.getNote()
+//store.getNotes()
 // POST route
