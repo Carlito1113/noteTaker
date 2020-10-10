@@ -27,15 +27,17 @@ module.exports = function (app) {
 
 
   app.post("/api/notes", function (req, res) {
+      console.log(outputPath);
     notesArray = [];
     notesArray.push(req.body);
     fs.readFile(outputPath, "utf-8", (err, data) => {
       if (err) throw err;
       data = JSON.parse(data);
-      for (i = 0; i < notesArray.length; i++) {
+      console.log(notesArray.length);
+      for (let i = 0; i < data.length; i++) {
         notesArray.push(data[i]);
       }
-      for (i = 0; i < notesArray.length; i++) {
+      for (let i = 0; i < notesArray.length; i++) {
         notesArray[i].id = i + 1;
       }
       res.send(notesArray);
@@ -44,7 +46,6 @@ module.exports = function (app) {
         if (err) {
           throw err;
         } else {
-          console.log("floopedy");
         }
       });
     });
@@ -53,7 +54,7 @@ module.exports = function (app) {
 
 
 
-  
+
   app.delete("/api/notes/:id", (req, res) => {
     notesArray = [];
     let noteId = req.params.id;
