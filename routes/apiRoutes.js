@@ -1,27 +1,10 @@
-// examples for the homework:
-const db = require("../db/db.json")
-const store = require("../db/store")
+const path = require('path')
+const OUTPUT_DIR = path.resolve(__dirname, "../db");
+const outputPath = path.join(OUTPUT_DIR, "db.json");
+const fs = require('fs');
 
-const {response} = require("express")
-const path = require("path");
-const express = require("express");
-const { getNotes } = require("../db/store");
-
-
-
-module.exports = function (app) {
-app.get('/api/notes', function (req, res) {
-    res.json(tableData);
-});
-
-app.get('/public/notes.html', function (req, res) {
-    res.json(tableData);
-});
+let notesArray = [];
+let savedNotes = [];
+module.exports = function(app) {
+    
 }
-
-
-
-
-// GET route
-//store.getNotes()
-// POST route
