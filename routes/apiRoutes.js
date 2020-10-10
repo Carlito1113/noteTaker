@@ -47,6 +47,21 @@ module.exports = function(app) {
     app.delete("/api/notes/:id", (req, res) => {
         notesArray = [];
         let noteId = req.params.id;
+        console.log(noteId);
 
-    })
+        fs.readFile(outputPath, "utf-8", (err, data) => {
+            if (err) throw err;
+            notesArray = JSON.parse(data);
+
+            const newNotesArray = notesArray.filter(note => note.id != noteId);
+
+            console.log(newNotesArray);
+            
+            fs.writeFile(outputPath, JSON.stringify(newNotesArray) + "\t", err => {
+                if (err) throw err;
+                console.log("deleted");
+                res.send(newNotesArray)
+            })
+        })
+    });
 }
